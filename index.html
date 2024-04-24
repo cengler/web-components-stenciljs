@@ -7,22 +7,31 @@
     <title>Web Components</title>
     <script src="tooltip.js"></script>
     <script src="confirm-link.js"></script>
+    <script src="my-toggle-button.js"></script>
 </head>
 
 <body>
-    <p>
-        <my-tooltip text="pepe">Hello</my-tooltip>
-    </p>
-    <p>
-        <my-tooltip text="pepe2">Hello2</my-tooltip>
-    </p>
+<p>
+    <my-tooltip class="important" text="pepe">
+        <span class="highlight">Hello</span>
+    </my-tooltip>
+</p>
+<p class="path">
+    <my-tooltip text="pepe2">
+        <span class="highlight">World</span>
+    </my-tooltip>
+</p>
 
-    <p>
-        <a href="https://www.google.com">To google</a>
-    </p>
-    <p>
-        <a is="confirm-link" href="https://www.google.com">Confirm to google</a>
-    </p>
+<p>
+    <a href="https://www.google.com">To google</a>
+</p>
+<p>
+    <a is="confirm-link" href="https://www.google.com">Confirm to google</a>
+</p>
+<p>
+    <my-toggle-button>Secret Data</my-toggle-button>
+</p>
+
 
 </body>
 

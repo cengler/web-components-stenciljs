@@ -5,7 +5,8 @@ class Tooltip extends HTMLElement {
         this._tooltipContainer
         this._tooltipText = 'hover'
         this.attachShadow({mode: 'open'})
-        
+
+        // # host-context: no anda en firefox
         this.shadowRoot.innerHTML = `
             <style>
                 div {
@@ -13,6 +14,15 @@ class Tooltip extends HTMLElement {
                     color: white;
                     position: absolute;
                     z-index: 10;
+                }
+                ::slotted(.highlight) {
+                    border-bottom: 1px dotted red;
+                }
+                :host(.important) {
+                    background-color: #bcff46;
+                }
+                :host-context(p) {
+                    font-weight: bold;
                 }
             </style>
             <slot>Def</slot>
