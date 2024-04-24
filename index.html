@@ -10,11 +10,17 @@
             box-sizing: border-box;
             font-family: sans-serif;
         }
+
         html {
             --color-primary: #cb8ddc
         }
+
+        body {
+            margin: 2rem;
+        }
     </style>
     <script src="tooltip.js"></script>
+    <script src="modal.js"></script>
     <script src="confirm-link.js"></script>
     <script src="my-toggle-button.js"></script>
 
@@ -41,6 +47,34 @@
 <p>
     <my-toggle-button>Secret Data</my-toggle-button>
 </p>
+
+<my-modal>
+    <h1 slot="title">Please Confirm</h1>
+    <p>With your confirmation you agree to pay the full amount!</p>
+</my-modal>
+
+<p>Please confirm your choice.</p>
+<button id="show">Show Details & Confirm</button>
+<script>
+  const confirmButton = document.querySelector('#show');
+  const modal = document.querySelector('my-modal');
+
+  modal.addEventListener('confirm', () => {
+    console.log('Confirmed...');
+  });
+
+  modal.addEventListener('cancel', () => {
+    console.log('Cancelled...');
+  });
+
+  confirmButton.addEventListener('click', () => {
+    //  modal.setAttribute('opened', '');
+    if (!modal.isOpen) {
+      modal.open();
+      console.log('Opening...');
+    }
+  });
+</script>
 
 
 </body>
