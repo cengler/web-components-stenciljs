@@ -24,10 +24,20 @@
         text-decoration: none;
         color: black;
       }
+
+      html {
+        --color-primary: #3b013b;
+        --color-primary-inverse: white;
+        --colr-primary-highlight: #750175;
+      }
+
     </style>
   </head>
   <body>
+
     <button id="side-drawer-btn">Open Side Menu</button>
+    <stock-price stock-symbol="DESP"></stock-price>
+    <stock-finder></stock-finder>
 
     <side-drawer drawer-title="My Drawer">
       <nav class="side-nav">
@@ -48,5 +58,13 @@
         }
       });
     </script>
+
+    <script>
+      const stockFinderEl = document.querySelector('stock-finder');
+      stockFinderEl.addEventListener('symbolSelected', event => {
+        console.log(event);
+      });
+    </script>
+
   </body>
 </html>

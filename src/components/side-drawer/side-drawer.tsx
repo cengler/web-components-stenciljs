@@ -23,6 +23,7 @@ export class SideDrawer {
   @Method()
   open() {
     this.opened = true;
+    return Promise.resolve()
   }
 
   render() {

@@ -11,6 +11,17 @@ export namespace Components {
         "open": () => Promise<void>;
         "opened": boolean;
     }
+    interface StockFinder {
+    }
+    interface StockPrice {
+        "stockSymbol": string;
+    }
+    interface StockSpinner {
+    }
+}
+export interface StockFinderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLStockFinderElement;
 }
 declare global {
     interface HTMLSideDrawerElement extends Components.SideDrawer, HTMLStencilElement {
@@ -19,8 +30,40 @@ declare global {
         prototype: HTMLSideDrawerElement;
         new (): HTMLSideDrawerElement;
     };
+    interface HTMLStockFinderElementEventMap {
+        "symbolSelected": string;
+    }
+    interface HTMLStockFinderElement extends Components.StockFinder, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLStockFinderElementEventMap>(type: K, listener: (this: HTMLStockFinderElement, ev: StockFinderCustomEvent<HTMLStockFinderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLStockFinderElementEventMap>(type: K, listener: (this: HTMLStockFinderElement, ev: StockFinderCustomEvent<HTMLStockFinderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLStockFinderElement: {
+        prototype: HTMLStockFinderElement;
+        new (): HTMLStockFinderElement;
+    };
+    interface HTMLStockPriceElement extends Components.StockPrice, HTMLStencilElement {
+    }
+    var HTMLStockPriceElement: {
+        prototype: HTMLStockPriceElement;
+        new (): HTMLStockPriceElement;
+    };
+    interface HTMLStockSpinnerElement extends Components.StockSpinner, HTMLStencilElement {
+    }
+    var HTMLStockSpinnerElement: {
+        prototype: HTMLStockSpinnerElement;
+        new (): HTMLStockSpinnerElement;
+    };
     interface HTMLElementTagNameMap {
         "side-drawer": HTMLSideDrawerElement;
+        "stock-finder": HTMLStockFinderElement;
+        "stock-price": HTMLStockPriceElement;
+        "stock-spinner": HTMLStockSpinnerElement;
     }
 }
 declare namespace LocalJSX {
@@ -28,8 +71,19 @@ declare namespace LocalJSX {
         "drawerTitle"?: string;
         "opened"?: boolean;
     }
+    interface StockFinder {
+        "onSymbolSelected"?: (event: StockFinderCustomEvent<string>) => void;
+    }
+    interface StockPrice {
+        "stockSymbol"?: string;
+    }
+    interface StockSpinner {
+    }
     interface IntrinsicElements {
         "side-drawer": SideDrawer;
+        "stock-finder": StockFinder;
+        "stock-price": StockPrice;
+        "stock-spinner": StockSpinner;
     }
 }
 export { LocalJSX as JSX };
@@ -37,6 +91,9 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "side-drawer": LocalJSX.SideDrawer & JSXBase.HTMLAttributes<HTMLSideDrawerElement>;
+            "stock-finder": LocalJSX.StockFinder & JSXBase.HTMLAttributes<HTMLStockFinderElement>;
+            "stock-price": LocalJSX.StockPrice & JSXBase.HTMLAttributes<HTMLStockPriceElement>;
+            "stock-spinner": LocalJSX.StockSpinner & JSXBase.HTMLAttributes<HTMLStockSpinnerElement>;
         }
     }
 }
