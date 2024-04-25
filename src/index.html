@@ -7,8 +7,46 @@
 
     <script type="module" src="/build/web-components-stenciljs.esm.js"></script>
     <script nomodule src="/build/web-components-stenciljs.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      .side-nav ul {
+        list-style: none;
+      }
+
+      .side-nav li {
+        margin: 1rem 0;
+      }
+
+      .side-nav a {
+        text-decoration: none;
+        color: black;
+      }
+    </style>
   </head>
   <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <button id="side-drawer-btn">Open Side Menu</button>
+
+    <side-drawer drawer-title="My Drawer">
+      <nav class="side-nav">
+        <ul>
+          <li><a href="https://www.google.com">Google1</a></li>
+          <li><a href="https://www.facebook.com">Facebook</a></li>
+        </ul>
+      </nav>
+    </side-drawer>
+
+    <script>
+      const sideDrawerButton = document.querySelector('#side-drawer-btn');
+      const sideDrawer = document.querySelector('side-drawer');
+      sideDrawerButton.addEventListener('click', () => {
+        if (!sideDrawer.opened) {
+          console.log('Opening side drawer...');
+          sideDrawer.open();
+        }
+      });
+    </script>
   </body>
 </html>
